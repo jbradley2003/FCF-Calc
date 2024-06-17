@@ -23,7 +23,7 @@ Let $\psi_{gs}$ be the ground state wavefunction and $\psi_{es}$ correspond to t
 
 $$\braket{\mu} = \braket{\psi_{es} | \hat{\mu} | \psi_{gs}}.$$
 
-We must consider each wavefunction as a product of two wavefunctions (with respect to the coordinates of the electron and nucleus). The dipole moment operator,$\hat{\mu}$, can also be decomposed similarly, except it is a sum:
+We must consider each wavefunction as a product of two wavefunctions (with respect to the coordinates of the electron and nucleus). The dipole moment operator, $\hat{\mu}$, can also be decomposed similarly, except it is a sum:
 
 - $\psi_{gs} = \psi_{gs, e}$ $\psi_{gs, n}$
 - $\psi_{es} = \psi_{es, e}$ $\psi_{es, n}$
