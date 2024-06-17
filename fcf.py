@@ -55,9 +55,9 @@ def progression(v, n_V, u):
    arr = []
    for i in range(n_V+1):
         if (i < v):
-            arr.append(100*q(i, v, u))
+            arr.append(int(100*q(i, v, u)))
         else:
-           arr.append(100*q(v, i, u))
+           arr.append(int(100*q(v, i, u)))
    return arr 
 
 # v_gs = 4
@@ -79,6 +79,53 @@ def generateColors(v_gs,color):
         arr.append(color[j])
         j+=1
        return(arr)
+   
+def createTable():
+    
+    secondary_window = tk.Toplevel(bg='white')
+    secondary_window.title("Individual Progressions")
+    secondary_window.geometry("600x500")
+
+    main_frame = Frame(secondary_window)
+    main_frame.pack(fill=BOTH, expand=1)
+    
+    # Update Constants
+    r_gs = e4.get()
+    r_es = e3.get()
+
+    delta_r = float(r_es) - float(r_gs)
+
+    w_gs = e6.get()
+    w_es = e5.get()
+
+    w_bar = calculateWBar(float(w_gs), float(w_es))
+
+    m1 = int(e1.get())
+    m2 = int(e2.get())
+
+    mA = periodictable.elements[m1]
+    mB = periodictable.elements[m2]
+
+    l1.config(text=mA.symbol)
+    l2.config(text=mB.symbol)
+
+    # mol = mA.symbol + mB.symbol
+
+    mu = (m1 * m2) / (m1 + m2)
+    u = (mu * w_bar) * (delta_r)**2 / 67.4425
+
+    v_gs = int(e8.get())
+    v_es = int(e7.get())
+    
+    xs = [i for i in range(v_gs+1)]
+    lst = []
+    for i in range(v_es+1):
+        lst.append(progression(i, v_gs+1,u))
+        for j in range(v_gs+1):
+            e = Entry(main_frame, width=10, fg='blue',font=('Arial',10,'bold'))
+            e.grid(row=i, column=j)
+            e.insert(END, lst[i][j])
+    print(lst)
 
 def plotBars():
 
@@ -90,7 +137,6 @@ def plotBars():
 
     main_frame = Frame(secondary_window)
     main_frame.pack(fill=BOTH, expand=1)
-
 
     ## Data processing
 
@@ -242,7 +288,6 @@ def plot():
     ax.set_zlabel('Franck-Condon Factor (%)')
     ax.set_yticks(yticks)
     ax.set_title('Series of Vibronic Progression(s) for ' + mol)
-
     canvas.draw()
 
 fig = f.Figure(figsize=(4.5, 4), dpi=100, linewidth=5,edgecolor='darkseagreen')
@@ -341,11 +386,15 @@ e8 = Entry(root, width=10, font=("Courier",9,"bold"))
 e8.insert(1,8)
 e8.place(x=200+ offset1, y=300+ offset2)
 
+# Delta r_e controls (second 2D Bar Chart)
+
+
+
 b1 = Button(root, text= "Plot Vibronic Progression", command = plot, fg = 'chartreuse', bg = 'darkslategray',font = ("Courier",12,"bold"))
 b1.place(x=50,y=500)
 b2 = Button(root, text= "Plot Individual Progressions", command = plotBars, fg = 'chartreuse', bg = 'darkslategray',font = ("Courier",12,"bold"))
 b2.place(x=50,y=460)
-b2 = Button(root, text= "View Tables", command = plot, fg = 'chartreuse', bg = 'darkslategray',font = ("Courier",12,"bold"))
+b2 = Button(root, text= "View Tables", command = createTable, fg = 'chartreuse', bg = 'darkslategray',font = ("Courier",12,"bold"))
 b2.place(x=50,y=540)
 
 canvas = FigureCanvasTkAgg(fig, master = root)
