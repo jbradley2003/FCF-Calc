@@ -120,7 +120,10 @@ def createTable():
     xs = [i for i in range(v_gs+1)]
     lst = []
     for i in range(v_es+1):
-        lst.append(progression(i, v_gs+1,u))
+        temp = progression(i, v_gs+1,u)
+        temp.insert(0,i)
+        lst.append(temp)
+        print(lst)
         for j in range(v_gs+1):
             e = Entry(main_frame, width=10, fg='blue',font=('Arial',10,'bold'))
             e.grid(row=i, column=j)
