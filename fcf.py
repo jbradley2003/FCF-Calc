@@ -11,33 +11,6 @@ import periodictable
 
 ### Reference DOI: 10.1063/1.443949
 
-## Constants (gs = ground state, es = excited state)
-
-# Internuclear distance, r_gs > r_es for blue degraded system
-
-# r_gs = 1.703
-# r_es = 1.655
-
-# delta_r = r_es - r_gs
-
-# Vibrational frequencies
-
-# w_gs = 1386
-# w_es = 1620
-
-# w_bar = calculateWBar(w_gs, w_es)
-
-# Reduced mass (Diatomic)
-
-# m1 = 23
-# m2 = 9
-
-# mu = (m1 * m2) / (m1 + m2)
-
-# Approximations for FCF Overlap Integral
-
-# u = (mu * w_bar) * (delta_r)**2 / 67.4425
-
 # Quantum Numbers: v = v', V = v''
 
 def calculateWBar(w_gs, w_es):
@@ -60,25 +33,18 @@ def progression(v, n_V, u):
            arr.append(int(100*q(v, i, u)))
    return arr 
 
-# v_gs = 4
-# v_es = 10
-
-# fcf = []
-# es = np.linspace(0, v_es, v_es + 1)
-
-## GUI 
-
 # Graphing
 
 def generateColors(v_gs,color):
-       arr = []
-       j = 0
-       for i in range(v_gs+1):
+    arr = []
+    j = 0
+    for i in range(v_gs+1):
         if j > 3:
-           j = 0
+            j = 0
         arr.append(color[j])
         j+=1
-       return(arr)
+    return(arr)
+
    
 def createTable():
     
@@ -100,16 +66,19 @@ def createTable():
 
     w_bar = calculateWBar(float(w_gs), float(w_es))
 
-    m1 = int(e1.get())
-    m2 = int(e2.get())
+    eA = periodictable.elements[int(e1.get())]
+    eB = periodictable.elements[int(e2.get())]
 
-    mA = periodictable.elements[m1]
-    mB = periodictable.elements[m2]
+    m1 = eA.mass
+    m2 = eB.mass
+    
+    el1 = eA.symbol
+    el2 = eB.symbol
 
-    l1.config(text=mA.symbol)
-    l2.config(text=mB.symbol)
+    l1.config(text=el1)
+    l2.config(text=el2)
 
-    # mol = mA.symbol + mB.symbol
+    mol = eA.symbol + "-" + eB.symbol
 
     mu = (m1 * m2) / (m1 + m2)
     u = (mu * w_bar) * (delta_r)**2 / 67.4425
@@ -153,17 +122,18 @@ def plotBars():
     w_es = e5.get()
 
     w_bar = calculateWBar(float(w_gs), float(w_es))
+    
+    eA = periodictable.elements[int(e1.get())]
+    eB = periodictable.elements[int(e2.get())]
 
-    m1 = int(e1.get())
-    m2 = int(e2.get())
+    m1 = eA.mass
+    m2 = eB.mass
+    
+    el1 = eA.symbol
+    el2 = eB.symbol
 
-    mA = periodictable.elements[m1]
-    mB = periodictable.elements[m2]
-
-    l1.config(text=mA.symbol)
-    l2.config(text=mB.symbol)
-
-    # mol = mA.symbol + mB.symbol
+    l1.config(text=el1)
+    l2.config(text=el2)
 
     mu = (m1 * m2) / (m1 + m2)
     u = (mu * w_bar) * (delta_r)**2 / 67.4425
@@ -175,13 +145,26 @@ def plotBars():
 
     if v_es == 0:
        fig,ax = plt.subplots()
+       
+       if el1 == el2:  
+            fig.suptitle('Vibronic Progressions for ${}_2$'.format(el1))
+       else:
+            fig.suptitle('Vibronic Progressions for {}-{}'.format(el1,el2))
+        
        ys = progression(0, v_gs, u)
+       
+    #    f_poly = np.polyfit(xs, ys, deg=v_gs+1)
+    #    x_fit = np.linspace(min(xs), max(xs), 100)
+    #    y_fit = np.polyval(f_poly, x_fit)
+       
        ax.bar(xs,ys, width=0.5)
        ax.set_title('Excited State: v\'= ' + str(0))
        ax.set_xlabel('Ground State (v\'\')')
        ax.set_ylabel('Franck-Condon Factor (%)')
+       
+    #    plt.plot(x_fit, y_fit, '--')
     else:
-        fig = f.Figure(figsize=(10, 10), dpi=100)
+        fig = f.Figure(figsize=(17, 12), dpi=80)
 
         rows = 3
         cols = 0
@@ -194,19 +177,31 @@ def plotBars():
 
         if (v_es + 1) <= rows:
             ax = fig.subplots(v_es+1)
-            fig.suptitle('Vibronic Progression')
+            
+            if el1 == el2:  
+                fig.suptitle('Vibronic Progression for ${}_2$'.format(el1))
+            else:
+                fig.suptitle('Vibronic Progression for {}-{}'.format(el1,el2))
+                
             fig.tight_layout(pad=3.0)
             for i in range(v_es+1):
-                print(i)
                 ys = progression(i,v_gs,u)
+                
                 ax[i].bar(xs, ys, width=0.5)
                 ax[i].set_title('Excited State: v\'= ' + str(i))
                 ax[i].set_xlabel('Ground State (v\'\')')
                 ax[i].set_ylabel('Franck-Condon Factor (%)')
                 ax[i].set_facecolor('lightgrey')
+                # ax[i].plot(x_fit, y_fit, '--')
+                
         else:
             ax = fig.subplots(nrows=rows,ncols=cols)
-            fig.suptitle('Vibronic Progression')
+            
+            if el1 == el2:  
+                fig.suptitle('Vibronic Progressions for ${}_2$'.format(el1))
+            else:
+                fig.suptitle('Vibronic Progressions for {}-{}'.format(el1,el2))
+                
             fig.tight_layout(pad=3.0)
             m, n = 0, 0
 
@@ -222,15 +217,15 @@ def plotBars():
                 ax[m,n].set_facecolor('lightgrey')
                 m += 1
 
-    # Placing graphs
+    # Placing 2D Bar Chart
 
     canvas = FigureCanvasTkAgg(fig, master = secondary_window)
 
-    canvas.get_tk_widget().place(x=0, y=0)
+    canvas.get_tk_widget().place(x=0, y=50)
 
     toolbar = NavigationToolbar2Tk(canvas, secondary_window, pack_toolbar = False)
     toolbar.update()
-    toolbar.place(x=0, y=0)
+    toolbar.place(x=0,y=0)
 
     frame.pack()
     
@@ -250,16 +245,17 @@ def plot():
 
     w_bar = calculateWBar(float(w_gs), float(w_es))
 
-    m1 = int(e1.get())
-    m2 = int(e2.get())
+    eA = periodictable.elements[int(e1.get())]
+    eB = periodictable.elements[int(e2.get())]
 
-    mA = periodictable.elements[m1]
-    mB = periodictable.elements[m2]
+    m1 = eA.mass
+    m2 = eB.mass
+    
+    el1 = eA.symbol
+    el2 = eB.symbol
 
-    l1.config(text=mA.symbol)
-    l2.config(text=mB.symbol)
-
-    mol = mA.symbol + mB.symbol
+    l1.config(text=el1)
+    l2.config(text=el2)
 
     mu = (m1 * m2) / (m1 + m2)
     u = (mu * w_bar) * (delta_r)**2 / 67.4425
@@ -285,12 +281,19 @@ def plot():
 
         # Plot the bar graph given by xs and ys on the plane y=k with 80% opacity.
         ax.bar(xs, ys, zs=k, zdir='y', color=cs, alpha=0.8)
+        
+    if el1 == el2:  
+        ax.set_title('Series of Vibronic Progression(s) for ${}_2$'.format(el1))
+    else:
+        ax.set_title('Series of Vibronic Progression(s) for {}-{}'.format(el1,el2))
 
     ax.set_xlabel('Ground State (v\'\')')
     ax.set_ylabel('Excited State (v\')')
     ax.set_zlabel('Franck-Condon Factor (%)')
     ax.set_yticks(yticks)
-    ax.set_title('Series of Vibronic Progression(s) for ' + mol)
+    
+    
+        
     canvas.draw()
 
 fig = f.Figure(figsize=(4.5, 4), dpi=100, linewidth=5,edgecolor='darkseagreen')
@@ -319,11 +322,11 @@ l.configure(background='dimgray',fg='chartreuse')
 
 # Masses
 
-l1 = Label(root, text="Mass 1", font=("Courier",12,"bold"))
+l1 = Label(root, text="Z (1)", font=("Courier",12,"bold"))
 l1.place(x=95 + offset1, y=120 + offset2)
 l1.configure(background='dimgray',fg='chartreuse')
 
-l2 = Label(root, text="Mass 2", font=("Courier",12,"bold"))
+l2 = Label(root, text="Z (2)", font=("Courier",12,"bold"))
 l2.place(x=195+ offset1, y=120+ offset2)
 l2.configure(background='dimgray',fg='chartreuse')
 
@@ -391,7 +394,23 @@ e8.place(x=200+ offset1, y=300+ offset2)
 
 # Delta r_e controls (second 2D Bar Chart)
 
+# l7 = Label(root, text="delta r_e (1)", font=("Courier",12,"bold"))
+# l7.place(x=95+ offset1, y=270+ offset2)
+# l7.configure(background='dimgray',fg='chartreuse')
 
+# l8 = Label(root, text="delta r_e (2)''", font=("Courier",12,"bold"))
+# l8.place(x=195+ offset1, y=270+ offset2)
+# l8.configure(background='dimgray',fg='chartreuse')
+
+# e7 = Entry(root, width=10, font=("Courier",9,"bold"))
+# e7.insert(1,0)
+# e7.place(x=100+ offset1, y=300+ offset2)
+
+# e8 = Entry(root, width=10, font=("Courier",9,"bold"))
+# e8.insert(1,8)
+# e8.place(x=200+ offset1, y=300+ offset2)
+
+# Buttons
 
 b1 = Button(root, text= "Plot Vibronic Progression", command = plot, fg = 'chartreuse', bg = 'darkslategray',font = ("Courier",12,"bold"))
 b1.place(x=50,y=500)
@@ -411,5 +430,3 @@ toolbar.place(x=400, y=550)
 frame.pack()
 
 root.mainloop()
-
-
