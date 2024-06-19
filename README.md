@@ -101,4 +101,10 @@ Open the app by running the code in `fcf.py`. Note that I have been developing t
 
 ![screenshot](images/navbar.png)
 
+**What's next on the agenda?**
+- Fixing GUI quirks.
+- Allowing users to make a 2D chart with an excited state held constant (for all bar plots in the chart) while $\Delta r_e$ varies.
+- Allowing users to view data tables associated with the plots.
+- More I haven't thought of yet...
+
 Last updated: 6/18/2024.
