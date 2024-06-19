@@ -84,8 +84,8 @@ Current functionality:
 
 **1. Plot a 2D bar chart with different vibronic progressions:**
   - Each bar chart in the series corresponds to the Franck-Condon factor between a fixed excited vibrational state ($v'$) and a specified number of ground states ($v''$).
-  - Constants that describe the vibrational potential of the ground and excited states can be specified to one's desire.
-    - The atomic number (Z) of each atom in the molecule.
+  - Constants that help describe the vibrational potential energy well of the ground and excited states can be specified:
+    - The atomic number (Z) of each atom in the molecule. These are used to fetch the masses of the element (in amu) using the `periodictable` module.
     - The vibrational wavenumber of the molecule in the excited ($w_e'$) and ground ($w_e''$) states.
     - The internuclear distance/bond length of the molecule in the excited ($r_e'$) and ground ($r_e''$) states.
     - Lastly, you can choose the number of vibrational states you wish to plot in the excited ($v'$) and ground ($v''$) states. Each bar plot shows the FCF between a constant excited state and various ground states depending on the values entered.
