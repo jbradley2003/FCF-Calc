@@ -61,7 +61,7 @@ This means that the user needs to specify the following constants:
 - $m_A$, $m_B$
 - $r_e'$, $r_e''$
 - $w_e'$, $w_e''$
-- and lastly: $v'$, $v''$
+- and lastly $v'$, $v''$.
 
 ----------------------------------------------
 
