@@ -3,7 +3,7 @@
 
 Author: James Bradley
 
-FCF-Calc serves to visualize vibronic (vibrational-electronic) progressions as this was needed during spectroscopy research in the [Varberg Lab](https://www.varberglab.com/).
+FCF-Calc serves to visualize vibronic (vibrational-electronic) progressions for spectroscopy research in the [Varberg Lab](https://www.varberglab.com/).
 
 # Inspiration and Theory
 
