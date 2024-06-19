@@ -53,7 +53,7 @@ $$q(v',v'') = \frac{u^{v''-v'} e^{-u}}{v'! v''!}[L^{v''-v'}_{v'}(u)]^2,$$
 where...
 - $u = \frac{\mu \bar{w}_e (\Delta r_e)^2}{67.4425}$
 - $\bar{w}_e = (2\frac{\sqrt{w_e' w_e''}}{\sqrt{w_e'} + \sqrt{w_e''}})^2$
-- $\mu = \frac{m_A m_B}{m_A + m_B}$ (for some diatomic molecule AB)
+- $\mu = \frac{m_A m_B}{m_A + m_B}$ (for some molecule AB)
 - $\Delta r_e = r_e' - r_e''$
 - $L^{k}_{n}(x)$ is the Associated Laguerre Polynomial.
 
