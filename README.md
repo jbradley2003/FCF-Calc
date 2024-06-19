@@ -78,9 +78,9 @@ Install these packages using this line in the terminal:
 pip install 'module_name_here'
 ```
 
-Open the app by running the code in `fcf.py`.
+Open the app by running the code in `fcf.py`. Note that I have been developing the GUI on Windows so it will look different on Mac OS (probably worse).
 
-Current functionality:
+**Current functionality:**
 
 **1. Plot a 2D bar chart with different vibronic progressions:**
   - Each bar chart in the series corresponds to the Franck-Condon factor between a fixed excited vibrational state ($v'$) and a specified number of ground states ($v''$).
