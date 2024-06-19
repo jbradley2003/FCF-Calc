@@ -4,7 +4,7 @@
 Author: James Bradley
 
 FCF-Calc serves to visualize vibronic (vibrational-electronic) progressions for spectroscopy research in the [Varberg Lab](https://www.varberglab.com/).
-
+------------------------------------------------------------------------------------------------------------------------------
 # Inspiration and Theory
 
 This application draws heavily from a paper by R. W. Nicholls (DOI: 10.1063/1.443949). This paper provides an approximation for the overlap integral between wavefunctions in the ground/excited states of a diatomic molecule. The intensity of transitions in electronic spectroscopy (which appear in spectra) is proportional to the electric dipole moment of the molecule between wavefunctions in the ground/excited states. 
