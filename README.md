@@ -11,7 +11,7 @@ This application draws heavily from a paper by R. W. Nicholls (DOI: 10.1063/1.44
 
 To provide some background for the mathematical formalisms of Quantum Mechanics, the document `QM-Review.pdf` has been added to this repository.
 
-In the Born-Oppenheimer approximation, we can assume that the velocity of the nucleus is negligible compared to that of the electron due to the difference in their masses, $m_e << m_n \implies v_e >> v_n$. 
+With the Born-Oppenheimer approximation, we can assume that the velocity of the nucleus is negligible compared to that of the electron due to the difference in their masses, $m_e << m_n \implies v_e >> v_n$. 
 
 A consequence of this approach is that the equilibrium bond length of the molecule in the ground ($r''_e$) and excited state ($r'_e$) do not change during transitions. Thus, we can represent electronic transitions as vertical arrows between (anharmonic) potential energy curves. We visualize these transitions with Jablonski diagrams. 
 
