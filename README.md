@@ -33,15 +33,15 @@ We must consider each wavefunction as a product of two wavefunctions (with respe
 
 Thus, we can rewrite $\braket{\psi_{es} | \hat{\mu} | \psi_{gs}}$ as:
 
-$$\braket{\psi_{es} | \hat{\mu} | \psi_{gs}} = \braket{\psi_{es, e} \psi_{es, n}| \hat{\mu_e} + \hat{\mu_n} | \psi_{gs, e} \psi_{gs, n} } = \braket{\psi_{es, e} \psi_{es, n}| \hat{\mu_e} | \psi_{gs, e} \psi_{gs, n} } + \braket{\psi_{es, e} \psi_{es, n}| \hat{\mu_n} | \psi_{gs, e} \psi_{gs, n} }$$
+$$\braket{\psi_{es} | \hat{\mu} | \psi_{gs}} = \braket{\psi_{es, e} \psi_{es, n}| \hat{\mu_e} + \hat{\mu_n} | \psi_{gs, e} \psi_{gs, n} } = \braket{\psi_{es, e} \psi_{es, n}| \hat{\mu_e} | \psi_{gs, e} \psi_{gs, n} } + \braket{\psi_{es, e} \psi_{es, n}| \hat{\mu_n} | \psi_{gs, e} \psi_{gs, n} }.$$
 
-The dipole moment operators corresponding to the electron and nucleus only act on wavefunctions associated with the correct sub-atomic coordinates (electron or nucleus). We can rearrange the previous expression to reflect this fact.
+The dipole moment operators corresponding to the electron and nucleus only act on wavefunctions associated with the correct sub-atomic coordinates (electron or nucleus). We can rearrange the previous expression to reflect this fact:
 
-$$\implies \braket{\psi_{es, e} \psi_{es, n}| \hat{\mu_e} | \psi_{gs, e} \psi_{gs, n} } + \braket{\psi_{es, e} \psi_{es, n}| \hat{\mu_n} | \psi_{gs, e} \psi_{gs, n} } = \braket{\psi_{es, n}|\psi_{gs, n}}\braket{\psi_{es, e} | \hat{\mu_e} | \psi_{gs, e}} + \braket{\psi_{es, e}|\psi_{gs, e}}\braket{\psi_{es, n} | \hat{\mu_n} | \psi_{gs, n}}$$
+$$\implies \braket{\psi_{es, e} \psi_{es, n}| \hat{\mu_e} | \psi_{gs, e} \psi_{gs, n} } + \braket{\psi_{es, e} \psi_{es, n}| \hat{\mu_n} | \psi_{gs, e} \psi_{gs, n} } = \braket{\psi_{es, n}|\psi_{gs, n}}\braket{\psi_{es, e} | \hat{\mu_e} | \psi_{gs, e}} + \braket{\psi_{es, e}|\psi_{gs, e}}\braket{\psi_{es, n} | \hat{\mu_n} | \psi_{gs, n}}.$$
 
-Since wavefunctions to the Schrodinger equation are orthogonal to each other if they are not degenerate (they do not have the same eigenvalue for the Hamiltonian operator), $\braket{\psi_{es, e}|\psi_{gs, e}} = 0$, and the nuclear component of the electric dipole moment vanishes.
+Since wavefunctions to the Schrodinger equation are orthogonal to each other if they are not degenerate (they do not have the same eigenvalue for the Hamiltonian operator), $\braket{\psi_{es, e}|\psi_{gs, e}} = 0$, and the nuclear component of the electric dipole moment vanishes,
 
-$$\implies \braket{\psi_{es, n}|\psi_{gs, n}}\braket{\psi_{es, e} | \hat{\mu_e} | \psi_{gs, e}} + \braket{\psi_{es, e}|\psi_{gs, e}}\braket{\psi_{es, n} | \hat{\mu_n} | \psi_{gs, n}} = \braket{\psi_{es, n}|\psi_{gs, n}}\braket{\psi_{es, e} | \hat{\mu_e} | \psi_{gs, e}}$$
+$$\implies \braket{\psi_{es, n}|\psi_{gs, n}}\braket{\psi_{es, e} | \hat{\mu_e} | \psi_{gs, e}} + \braket{\psi_{es, e}|\psi_{gs, e}}\braket{\psi_{es, n} | \hat{\mu_n} | \psi_{gs, n}} = \braket{\psi_{es, n}|\psi_{gs, n}}\braket{\psi_{es, e} | \hat{\mu_e} | \psi_{gs, e}}.$$
 
 Let $q = \braket{\psi_{es, n}|\psi_{gs, n}}$, this is the Franck-Condon Factor (FCF). It represents how much the given wavefunctions in the ground and excited state overlap.
 
