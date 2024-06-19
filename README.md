@@ -7,7 +7,7 @@ FCF-Calc serves to visualize vibronic (vibrational-electronic) progressions for 
 
 # Inspiration and Theory
 
-This application draws heavily from a paper by R. W. Nicholls (DOI: 10.1063/1.443949). This paper provided an approximation for the overlap integral between wavefunctions in the ground/excited states of a diatomic molecule. The intensity of transitions in electronic spectroscopy (which appear in spectra) is proportional to the electric dipole moment of the molecule between wavefunctions in the ground/excited states. 
+This application draws heavily from a paper by R. W. Nicholls (DOI: 10.1063/1.443949). This paper provides an approximation for the overlap integral between wavefunctions in the ground/excited states of a diatomic molecule. The intensity of transitions in electronic spectroscopy (which appear in spectra) is proportional to the electric dipole moment of the molecule between wavefunctions in the ground/excited states. 
 
 To provide some background for the mathematical formalisms of Quantum Mechanics, the document `QM-Review.pdf` has been added to this repository.
 
