@@ -9,7 +9,7 @@ This application draws heavily from a paper by R. W. Nicholls (DOI: 10.1063/1.44
 
 To provide some background for the mathematical formalisms of Quantum Mechanics, the document `QM-Review.pdf` has been added to this repository.
 
-In the Born-Oppenheimer approximation, we can assume that the speed of the nucleus is negligible compared to that of the electron due to the difference in their masses, $v_e$ >> $v_n$ (these are velocities). 
+In the Born-Oppenheimer approximation, we can assume that the velocity of the nucleus is negligible compared to that of the electron due to the difference in their masses, $m_e << m_n \implies v_e >> v_n$. 
 
 A consequence of this approach is that the equilibrium bond length of the molecule in the ground ($r''_e$) and excited state ($r'_e$) do not change during transitions. Thus, we can represent electronic transitions as vertical arrows between (anharmonic) potential energy curves. We visualize these transitions with Jablonski diagrams. 
 
@@ -41,7 +41,7 @@ Since wavefunctions to the Schrodinger equation are orthogonal to each other if 
 
 $$\implies \braket{\psi_{es, n}|\psi_{gs, n}}\braket{\psi_{es, e} | \hat{\mu_e} | \psi_{gs, e}} + \braket{\psi_{es, e}|\psi_{gs, e}}\braket{\psi_{es, n} | \hat{\mu_n} | \psi_{gs, n}} = \braket{\psi_{es, n}|\psi_{gs, n}}\braket{\psi_{es, e} | \hat{\mu_e} | \psi_{gs, e}}$$
 
-Let $q = \braket{\psi_{es, n}|\psi_{gs, n}}$, this is the Franck-Condon Factor (FCF)!
+Let $q = \braket{\psi_{es, n}|\psi_{gs, n}}$, this is the Franck-Condon Factor (FCF).
 
 $$\therefore \hat{\mu} = q\braket{\psi_{es, e} | \hat{\mu_e} | \psi_{gs, e}} $$
 
@@ -85,6 +85,11 @@ Current functionality:
 **1. Plot a 2D bar chart with different vibronic progressions:**
   - Each bar chart in the series corresponds to the Franck-Condon factor between a fixed excited vibrational state ($v'$) and a specified number of ground states ($v''$).
   - Constants that describe the vibrational potential of the ground and excited states can be specified to one's desire.
+    - The atomic number (Z) of each atom in the molecule.
+    - The vibrational wavenumber of the molecule in the excited ($w_e'$) and ground ($w_e''$) states.
+    - The internuclear distance/bond length of the molecule in the excited ($r_e'$) and ground ($w_e''$) states.
+    - Lastly, you can choose the number of vibrational states you wish to plot in the excited ($v'$) and ground ($v''$) states. Each bar plot shows the FCF between a constant excited state and various ground states depending on the values entered.
+
 
 ![screenshot](images/2d.png)
 
@@ -92,7 +97,7 @@ Current functionality:
 
 ![screenshot](images/indplots.png)
 
-**3. Images of the plots can be manipulated and saved as a .png file (pictures are named `image.png` by default) thanks to the matplotlib navbar!**
+**3. Images of the plots can be manipulated and saved as a .png file (pictures are named `image.png` by default) thanks to the matplotlib navbar.**
 
 ![screenshot](images/navbar.png)
 
