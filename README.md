@@ -77,7 +77,7 @@ Packages needed:
 Install these packages using this line in the terminal:
 
 ```
-pip install 'module_name_here'
+pip install module_name_here
 ```
 
 Open the app by running the code in `fcf.py`. Note that I have been developing the GUI on Windows so it will look different on Mac OS (probably worse).
