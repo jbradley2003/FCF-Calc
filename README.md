@@ -101,4 +101,4 @@ Current functionality:
 
 ![screenshot](images/navbar.png)
 
-Last updated: 6/16/2024.
+Last updated: 6/18/2024.
