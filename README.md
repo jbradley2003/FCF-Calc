@@ -87,7 +87,7 @@ Current functionality:
   - Constants that describe the vibrational potential of the ground and excited states can be specified to one's desire.
     - The atomic number (Z) of each atom in the molecule.
     - The vibrational wavenumber of the molecule in the excited ($w_e'$) and ground ($w_e''$) states.
-    - The internuclear distance/bond length of the molecule in the excited ($r_e'$) and ground ($w_e''$) states.
+    - The internuclear distance/bond length of the molecule in the excited ($r_e'$) and ground ($r_e''$) states.
     - Lastly, you can choose the number of vibrational states you wish to plot in the excited ($v'$) and ground ($v''$) states. Each bar plot shows the FCF between a constant excited state and various ground states depending on the values entered.
 
 
