@@ -91,15 +91,18 @@ Open the app by running the code in `fcf.py`. Note that I have been developing t
     - The vibrational wavenumber of the molecule in the excited ($w_e'$) and ground ($w_e''$) states.
     - The internuclear distance/bond length of the molecule in the excited ($r_e'$) and ground ($r_e''$) states.
     - Lastly, you can choose the number of vibrational states you wish to plot in the excited ($v'$) and ground ($v''$) states. Each bar plot shows the FCF between a constant excited state and various ground states depending on the values entered.
-
-
+      
 ![screenshot](images/2d.png)
 
-**2. See each individual FCF plot corresponding to a given excited state in another window (dynamic window sizing has not yet been implemented for large values of $v'$ and $v''$).**
+**2. Plot a 2D bar chart with various values of $\Delta r_e$ with a fixed excited state ($v'$).**
+
+![screenshot](images/delta.png)
+
+**3. See each individual FCF plot corresponding to a given excited state in another window (dynamic window sizing has not yet been implemented for large values of $v'$ and $v''$).**
 
 ![screenshot](images/indplots.png)
 
-**3. Images of the plots can be manipulated and saved as a .png file (pictures are named `image.png` by default) thanks to the matplotlib navbar.**
+**4. Images of the plots can be manipulated and saved as a .png file (pictures are named `image.png` by default) thanks to the matplotlib navbar.**
 
 ![screenshot](images/navbar.png)
 
