@@ -94,7 +94,7 @@ Open the app by running the code in `fcf.py`. Note that I have been developing t
       
 ![screenshot](images/2d.png)
 
-**2. Plot a 2D bar chart with various values of $\Delta r_e$ with a fixed excited state ($v'$).**
+**2. Plot a 2D bar chart with various values of $\Delta r_e$ given a fixed excited state ($v'$) and number of ground state levels [0,$v''$].**
 
 ![screenshot](images/delta.png)
 
