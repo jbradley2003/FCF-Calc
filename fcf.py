@@ -26,19 +26,22 @@ def q(v, V, u):
 
 def progression(v, n_V, u):
    arr = []
+   q_curr = 0
    for i in range(n_V+1):
         if (i < v):
-            arr.append(int(100*q(i, v, u)))
+            q_curr = 100*q(i, v, u)
+            arr.append(q_curr)
         else:
-           arr.append(int(100*q(v, i, u)))
+           q_curr = 100*q(v, i, u)
+           arr.append(q_curr)
    return arr 
 
 # Graphing
 
-def generateColors(v_gs,color):
+def generateColors(n,color):
     arr = []
     j = 0
-    for i in range(v_gs+1):
+    for i in range(n):
         if j > 3:
             j = 0
         arr.append(color[j])
@@ -260,39 +263,91 @@ def plot():
     mu = (m1 * m2) / (m1 + m2)
     u = (mu * w_bar) * (delta_r)**2 / 67.4425
 
+    color_arr = ['r', 'g', 'b', 'y']
+
+    d_r1 = float(e9.get())
+    d_r2 = float(e10.get())
+    n = int(e11.get())
+
+    const_v_es = int(e12.get())
+    range_gs = int(e13.get())
+
+    dr = abs(d_r1 - d_r2)/n
+    r = d_r1
+
     v_gs = int(e8.get())
     v_es = int(e7.get())
 
-    # Load plot
-    
-    color_arr = ['r', 'g', 'b', 'y']
 
-    colors = generateColors(v_es, color_arr)
-    yticks = [i for i in range(v_es+1)]
-    yticks.reverse()
+    if cb1.get() == 1 and cb2.get() == 0:
+        colors = generateColors(v_es+1, color_arr)
+        yticks = [i for i in range(v_es+1)]
+        yticks.reverse()
 
-    for c, k in zip(colors, yticks):
-        # Create data set in plane k
-        xs = np.arange(v_gs+1)
-        ys = progression(k, v_gs, u)
+        for c, k in zip(colors, yticks):
+            # Create data set in plane k
+            xs = np.arange(v_gs+1)
+            ys = progression(k, v_gs, u)
 
-        # Coloring each set
-        cs = [c] * len(xs)
+            # Coloring each set
+            cs = [c] * len(xs)
 
-        # Plot the bar graph given by xs and ys on the plane y=k with 80% opacity.
-        ax.bar(xs, ys, zs=k, zdir='y', color=cs, alpha=0.8)
-        
-    if el1 == el2:  
-        ax.set_title('Series of Vibronic Progression(s) for ${}_2$'.format(el1))
-    else:
-        ax.set_title('Series of Vibronic Progression(s) for {}-{}'.format(el1,el2))
+            # Plot the bar graph given by xs and ys on the plane y=k with 80% opacity.
+            ax.bar(xs, ys, zs=k, zdir='y', color=cs, alpha=0.8)
+            
+        if el1 == el2:  
+            ax.set_title('Series of Vibronic Progression(s) for ${}_2$'.format(el1))
+        else:
+            ax.set_title('Series of Vibronic Progression(s) for {}-{}'.format(el1,el2))
 
-    ax.set_xlabel('Ground State (v\'\')')
-    ax.set_ylabel('Excited State (v\')')
-    ax.set_zlabel('Franck-Condon Factor (%)')
-    ax.set_yticks(yticks)
-    
-    
+        ax.set_xlabel('Ground State (v\'\')')
+        ax.set_ylabel('Excited State (v\')')
+        ax.set_zlabel('Franck-Condon Factor (%)')
+        ax.set_yticks(yticks)
+
+    elif cb2.get() == 1 and cb1.get() == 0:
+
+        if n <= 0:
+            top= Toplevel(root)
+            top.geometry("200x50")
+            top.title("Increment count must be greater than 0.")
+            Label(top, text= "Hello World!", font=('Courier', 12)).place(x=150,y=80)
+
+        else:
+            colors = generateColors(n+1, color_arr)
+
+            yticks = [r]
+
+            for i in range(n):
+                r += dr
+                yticks.append(r)
+
+            yticks.reverse()
+
+            for c, k in zip(colors, yticks):
+                # Create data set in plane k
+                xs = np.arange(range_gs+1)
+                u = (mu * w_bar) * (k)**2 / 67.4425
+                ys = progression(const_v_es, range_gs, u)
+
+                # Coloring each set
+                cs = [c] * len(xs)
+
+                # Plot the bar graph given by xs and ys on the plane y=k with 80% opacity.
+                ax.bar(xs, ys, zs=k, zdir='y', color=cs, alpha=0.8)
+                
+            if el1 == el2:  
+                ax.set_title('Series of Vibronic Progression(s) for ${}_2$'.format(el1))
+            else:
+                ax.set_title('Series of Vibronic Progression(s) for {}-{}'.format(el1,el2))
+
+            ax.set_xlabel('Ground State (v\'\')')
+            ax.set_ylabel('Δrₑ (Å)')
+            ax.set_zlabel('Franck-Condon Factor (%)')
+            ax.set_yticks(yticks)
+
+    elif cb1.get() == 1 and cb2.get() == 1:
+       pass 
         
     canvas.draw()
 
@@ -314,7 +369,7 @@ label.pack()
 
 # Entries
 offset1 = 0
-offset2 = 100 
+offset2 = 50
 
 l = Label(root, text="Parameters", font=("Courier",25,"bold","italic"))
 l.place(x=85 + offset1, y=50 + offset2)
@@ -340,11 +395,11 @@ e2.place(x=200+ offset1, y=150+ offset2)
 
 # Internuclear Distances
 
-l3 = Label(root, text="R'e", font=("Courier",12,"bold"))
+l3 = Label(root, text="rₑ'", font=("Courier",12,"bold"))
 l3.place(x=95+ offset1, y=170+ offset2)
 l3.configure(background='dimgray',fg='chartreuse')
 
-l4 = Label(root, text="R''e", font=("Courier",12,"bold"))
+l4 = Label(root, text="rₑ''", font=("Courier",12,"bold"))
 l4.place(x=195+ offset1, y=170+ offset2)
 l4.configure(background='dimgray',fg='chartreuse')
 
@@ -358,11 +413,11 @@ e4.place(x=200+ offset1, y=200+ offset2)
 
 # Vibrational Frequencies
 
-l5 = Label(root, text="w'e", font=("Courier",12,"bold"))
+l5 = Label(root, text="wₑ'", font=("Courier",12,"bold"))
 l5.place(x=95+ offset1, y=220+ offset2)
 l5.configure(background='dimgray',fg='chartreuse')
 
-l6 = Label(root, text="w''e", font=("Courier",12,"bold"))
+l6 = Label(root, text="wₑ''", font=("Courier",12,"bold"))
 l6.place(x=195+ offset1, y=220+ offset2)
 l6.configure(background='dimgray',fg='chartreuse')
 
@@ -376,11 +431,11 @@ e6.place(x=200+ offset1, y=250+ offset2)
 
 # Vibrational QNs
 
-l7 = Label(root, text="upper v'", font=("Courier",12,"bold"))
+l7 = Label(root, text="ES~[0,v']", font=("Courier",12,"bold"))
 l7.place(x=95+ offset1, y=270+ offset2)
 l7.configure(background='dimgray',fg='chartreuse')
 
-l8 = Label(root, text="upper v''", font=("Courier",12,"bold"))
+l8 = Label(root, text="GS~[0,v'']", font=("Courier",12,"bold"))
 l8.place(x=195+ offset1, y=270+ offset2)
 l8.configure(background='dimgray',fg='chartreuse')
 
@@ -392,32 +447,87 @@ e8 = Entry(root, width=10, font=("Courier",9,"bold"))
 e8.insert(1,8)
 e8.place(x=200+ offset1, y=300+ offset2)
 
-# Delta r_e controls (second 2D Bar Chart)
+# Δrₑ controls (second 2D Bar Chart)
 
-# l7 = Label(root, text="delta r_e (1)", font=("Courier",12,"bold"))
-# l7.place(x=95+ offset1, y=270+ offset2)
-# l7.configure(background='dimgray',fg='chartreuse')
+# Checkboxes 
 
-# l8 = Label(root, text="delta r_e (2)''", font=("Courier",12,"bold"))
-# l8.place(x=195+ offset1, y=270+ offset2)
-# l8.configure(background='dimgray',fg='chartreuse')
+cb1 = IntVar() 
+cb2 = IntVar() 
 
-# e7 = Entry(root, width=10, font=("Courier",9,"bold"))
-# e7.insert(1,0)
-# e7.place(x=100+ offset1, y=300+ offset2)
+b3 = Checkbutton(root, text = "Constant Δrₑ", font=("Courier",12,"bold"),
+                    variable = cb1, 
+                    onvalue = 1, 
+                    offvalue = 0, 
+                    height = 2, 
+                    width = 20)
+b3.place(x=328 + 25,y=80)
+b3.configure(background='dimgray',fg='chartreuse')
 
-# e8 = Entry(root, width=10, font=("Courier",9,"bold"))
-# e8.insert(1,8)
-# e8.place(x=200+ offset1, y=300+ offset2)
+b4 = Checkbutton(root, text = "Constant v'", font=("Courier",12,"bold"),
+                    variable = cb2, 
+                    onvalue = 1, 
+                    offvalue = 0, 
+                    height = 2, 
+                    width = 25) 
+b4.place(x=298 + 25,y=110) 
+b4.configure(background='dimgray',fg='chartreuse')
+
+# Δrₑ bounds
+
+l9= Label(root, text="Δrₑ (1)", font=("Courier",12,"bold"))
+l9.place(x=95+ offset1, y=320+ offset2)
+l9.configure(background='dimgray',fg='chartreuse')
+
+l10 = Label(root, text="Δrₑ (2)", font=("Courier",12,"bold"))
+l10.place(x=195+ offset1, y=320+ offset2)
+l10.configure(background='dimgray',fg='chartreuse')
+
+e9 = Entry(root, width=10, font=("Courier",9,"bold"))
+e9.insert(1,0)
+e9.place(x=100+ offset1, y=350+ offset2)
+
+e10 = Entry(root, width=10, font=("Courier",9,"bold"))
+e10.insert(1,0.5)
+e10.place(x=200+ offset1, y=350+ offset2)
+
+# Δrₑ step size
+
+l11 = Label(root, text="Interval count", font=("Courier",12,"bold"))
+l11.place(x=110+ offset1, y=375+ offset2)
+l11.configure(background='dimgray',fg='chartreuse')
+
+e11 = Entry(root, width=10, font=("Courier",9,"bold"))
+e11.insert(1,2)
+e11.place(x=145+ offset1, y=400+ offset2)
+
+# Vib QN params
+
+l12 = Label(root, text="ES = v'", font=("Courier",12,"bold"))
+l12.place(x=95+ offset1, y=430+ offset2)
+l12.configure(background='dimgray',fg='chartreuse')
+
+l13 = Label(root, text="GS~[0,v'']", font=("Courier",12,"bold"))
+l13.place(x=190+ offset1, y=430+ offset2)
+l13.configure(background='dimgray',fg='chartreuse')
+
+e12 = Entry(root, width=10, font=("Courier",9,"bold"))
+e12.insert(1,0)
+e12.place(x=100+ offset1, y=455+ offset2)
+
+e13 = Entry(root, width=10, font=("Courier",9,"bold"))
+e13.insert(1,8)
+e13.place(x=200+ offset1, y=455+ offset2)
 
 # Buttons
 
 b1 = Button(root, text= "Plot Vibronic Progression", command = plot, fg = 'chartreuse', bg = 'darkslategray',font = ("Courier",12,"bold"))
-b1.place(x=50,y=500)
+b1.place(x=50,y=500 + 100)
+
 b2 = Button(root, text= "Plot Individual Progressions", command = plotBars, fg = 'chartreuse', bg = 'darkslategray',font = ("Courier",12,"bold"))
-b2.place(x=50,y=460)
+b2.place(x=50,y=460 + 100)
+
 b2 = Button(root, text= "View Tables", command = createTable, fg = 'chartreuse', bg = 'darkslategray',font = ("Courier",12,"bold"))
-b2.place(x=50,y=540)
+b2.place(x=50,y=540 + 100)
 
 canvas = FigureCanvasTkAgg(fig, master = root)
 
