@@ -112,4 +112,4 @@ Open the app by running the code in `fcf.py`. Note that I have been developing t
 - Allowing users to view data tables associated with the plots.
 - More soon!
 
-Last updated: 6/18/2024.
+Last updated: 6/20/2024.
