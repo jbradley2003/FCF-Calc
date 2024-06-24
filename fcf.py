@@ -7,15 +7,19 @@ import tkinter as tk
 from tkinter import *
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 import matplotlib.figure as f
+from tkinter import messagebox 
 import periodictable
 
 ### Reference DOI: 10.1063/1.443949
 
 # Quantum Numbers: v = v', V = v''
 
-def calculateWBar(w_gs, w_es):
+def calculateU(w_gs, w_es, m1, m2, delta_r):
     w_bar = 4 * (w_gs * w_es) / (w_gs + 2 * m.sqrt(w_gs * w_es) + w_es)
-    return w_bar
+    mu = (m1 * m2) / (m1 + m2)
+    return (mu * w_bar) * (delta_r)**2 / 67.4425
+
+# Models
 
 def q(v, V, u):
   z = (m.factorial(v) / m.factorial(V))
@@ -36,8 +40,7 @@ def progression(v, n_V, u):
            arr.append(q_curr)
    return arr 
 
-# Graphing
-
+# Graphing/Vis
 def generateColors(n,color):
     arr = []
     j = 0
@@ -50,15 +53,31 @@ def generateColors(n,color):
 
    
 def createTable():
-    
     secondary_window = tk.Toplevel(bg='white')
     secondary_window.title("Individual Progressions")
-    secondary_window.geometry("600x500")
+    secondary_window.geometry("700x500")
 
     main_frame = Frame(secondary_window)
     main_frame.pack(fill=BOTH, expand=1)
     
     # Update Constants
+
+    # Calling mass of element from periodic table
+
+    # eA = periodictable.elements[int(e1.get())]
+    # eB = periodictable.elements[int(e2.get())]
+
+    # m1 = eA.mass
+    # m2 = eB.mass
+    
+    # el1 = eA.symbol
+    # el2 = eB.symbol
+
+    # l1.config(text=el1)
+    # l2.config(text=el2)
+
+    # mol = eA.symbol + "-" + eB.symbol
+
     r_gs = e4.get()
     r_es = e3.get()
 
@@ -67,32 +86,20 @@ def createTable():
     w_gs = e6.get()
     w_es = e5.get()
 
-    w_bar = calculateWBar(float(w_gs), float(w_es))
-
-    eA = periodictable.elements[int(e1.get())]
-    eB = periodictable.elements[int(e2.get())]
-
-    m1 = eA.mass
-    m2 = eB.mass
-    
-    el1 = eA.symbol
-    el2 = eB.symbol
-
-    l1.config(text=el1)
-    l2.config(text=el2)
-
-    mol = eA.symbol + "-" + eB.symbol
-
-    mu = (m1 * m2) / (m1 + m2)
-    u = (mu * w_bar) * (delta_r)**2 / 67.4425
+    m1 = e1.get()
+    m2 = e2.get()
 
     v_gs = int(e8.get())
     v_es = int(e7.get())
+
+    u = calculateU(w_gs, w_es, m1, m2, delta_r)
     
-    xs = [i for i in range(v_gs+1)]
+    xs = list(range(v_gs+1))
     xs.insert(0,'ES/GS')
+
     lst = []
     lst.append(xs)
+
     for i in range(v_es+1):
         temp = progression(i, v_gs,u)
         temp.insert(0,i)
@@ -100,25 +107,18 @@ def createTable():
     
     for i in range(len(lst)):
         for j in range(len(lst[i])):
-            e = Entry(main_frame, width=10, fg='blue',font=('Arial',10,'bold'))
+            e = Entry(main_frame, width=10, fg='black',font=('Arial',10,'bold'))
             e.grid(row=i, column=j)
             e.insert(END, lst[i][j])
             
-
 def plotBars():
-
     # Creating new window/frame
-    
     secondary_window = tk.Toplevel(bg='white')
     secondary_window.title("Individual Progressions")
     secondary_window.geometry("600x500")
-
+    
     main_frame = Frame(secondary_window)
-    main_frame.pack(fill=BOTH, expand=1)
-
-    ## Data processing
-    
-    
+    main_frame.pack(fill=BOTH, expand=1) 
 
     # Update Constants
     r_gs = e4.get()
@@ -129,38 +129,31 @@ def plotBars():
     w_gs = e6.get()
     w_es = e5.get()
 
-    w_bar = calculateWBar(float(w_gs), float(w_es))
+    m1 = e1.get()
+    m2 = e2.get()
     
-    eA = periodictable.elements[int(e1.get())]
-    eB = periodictable.elements[int(e2.get())]
-
-    m1 = eA.mass
-    m2 = eB.mass
-    
-    el1 = eA.symbol
-    el2 = eB.symbol
-
-    l1.config(text=el1)
-    l2.config(text=el2)
-
-    mu = (m1 * m2) / (m1 + m2)
-    u = (mu * w_bar) * (delta_r)**2 / 67.4425
-
     v_gs = int(e8.get())
     v_es = int(e7.get())
 
-    xs = [i for i in range(v_gs+1)]
+    u = calculateU(w_gs, w_es, m1, m2, delta_r)
+
+    xs = list(range(v_gs+1))
 
     if v_es == 0:
        fig,ax = plt.subplots()
+       fig.suptitle('Vibronic Progression')
+
+    # c-style string formatting.
        
-       if el1 == el2:  
-            fig.suptitle('Vibronic Progressions for ${}_2$'.format(el1))
-       else:
-            fig.suptitle('Vibronic Progressions for {}-{}'.format(el1,el2))
+    #    if el1 == el2:  
+    #         fig.suptitle('Vibronic Progressions for ${}_2$'.format(el1))
+    #    else:
+    #         fig.suptitle('Vibronic Progressions for {}-{}'.format(el1,el2))
         
        ys = progression(0, v_gs, u)
-       
+
+    # In case I want to to do a polynomial fit.
+    
     #    f_poly = np.polyfit(xs, ys, deg=v_gs+1)
     #    x_fit = np.linspace(min(xs), max(xs), 100)
     #    y_fit = np.polyval(f_poly, x_fit)
@@ -172,10 +165,12 @@ def plotBars():
        
     #    plt.plot(x_fit, y_fit, '--')
     else:
+        
         fig = f.Figure(figsize=(17, 12), dpi=80)
 
         rows = 3
         cols = 0
+
         n = (v_es + 1)//rows
 
         if (v_es + 1) % rows == 0:
@@ -185,30 +180,23 @@ def plotBars():
 
         if (v_es + 1) <= rows:
             ax = fig.subplots(v_es+1)
-            
-            if el1 == el2:  
-                fig.suptitle('Vibronic Progression for ${}_2$'.format(el1))
-            else:
-                fig.suptitle('Vibronic Progression for {}-{}'.format(el1,el2))
-                
+            fig.suptitle('Vibronic Progression')
             fig.tight_layout(pad=3.0)
+
             for i in range(v_es+1):
                 ys = progression(i,v_gs,u)
-                
                 ax[i].bar(xs, ys, width=0.5)
                 ax[i].set_title('Excited State: v\'= ' + str(i))
                 ax[i].set_xlabel('Ground State (v\'\')')
                 ax[i].set_ylabel('Franck-Condon Factor (%)')
                 ax[i].set_facecolor('lightgrey')
+
+                # Polynomial fit
                 # ax[i].plot(x_fit, y_fit, '--')
                 
         else:
             ax = fig.subplots(nrows=rows,ncols=cols)
-            
-            if el1 == el2:  
-                fig.suptitle('Vibronic Progressions for ${}_2$'.format(el1))
-            else:
-                fig.suptitle('Vibronic Progressions for {}-{}'.format(el1,el2))
+            fig.suptitle('Vibronic Progression')
                 
             fig.tight_layout(pad=3.0)
             m, n = 0, 0
@@ -242,6 +230,7 @@ def plotBars():
 def plot():
     # Clear Canvas
     ax.clear()
+
     # Update Constants
     r_gs = e4.get()
     r_es = e3.get()
@@ -251,22 +240,12 @@ def plot():
     w_gs = e6.get()
     w_es = e5.get()
 
-    w_bar = calculateWBar(float(w_gs), float(w_es))
+    m1 = e1.get()
+    m2 = e2.get()
 
-    eA = periodictable.elements[int(e1.get())]
-    eB = periodictable.elements[int(e2.get())]
+    u = calculateU(w_gs, w_es, m1, m2, delta_r)
 
-    m1 = eA.mass
-    m2 = eB.mass
-    
-    el1 = eA.symbol
-    el2 = eB.symbol
-
-    l1.config(text=el1)
-    l2.config(text=el2)
-
-    mu = (m1 * m2) / (m1 + m2)
-    u = (mu * w_bar) * (delta_r)**2 / 67.4425
+    v_gs = int(e8.get())
 
     color_arr = ['r', 'g', 'b', 'y']
 
@@ -283,10 +262,10 @@ def plot():
     v_gs = int(e8.get())
     v_es = int(e7.get())
 
-
-    if cb1.get() == 1 and cb2.get() == 0:
+    # Graph option toggle
+    if val.get() == "Constant Δrₑ":
         colors = generateColors(v_es+1, color_arr)
-        yticks = [i for i in range(v_es+1)]
+        yticks = list(range(v_es+1))
         yticks.reverse()
 
         for c, k in zip(colors, yticks):
@@ -299,18 +278,14 @@ def plot():
 
             # Plot the bar graph given by xs and ys on the plane y=k with 80% opacity.
             ax.bar(xs, ys, zs=k, zdir='y', color=cs, alpha=0.8)
-            
-        if el1 == el2:  
-            ax.set_title('Series of Vibronic Progression(s) for ${}_2$'.format(el1))
-        else:
-            ax.set_title('Series of Vibronic Progression(s) for {}-{}'.format(el1,el2))
 
+        ax.set_title('Series of Vibronic Progression(s)')
         ax.set_xlabel('Ground State (v\'\')')
         ax.set_ylabel('Excited State (v\')')
         ax.set_zlabel('Franck-Condon Factor (%)')
         ax.set_yticks(yticks)
 
-    elif cb2.get() == 1 and cb1.get() == 0:
+    elif val.get() == "Constant v'":
 
         if n <= 0:
             top= Toplevel(root)
@@ -341,20 +316,14 @@ def plot():
                 # Plot the bar graph given by xs and ys on the plane y=k with 80% opacity.
                 ax.bar(xs, ys, zs=k, zdir='y', color=cs, alpha=0.8)
                 
-            if el1 == el2:  
-                ax.set_title('Series of Vibronic Progression(s) for ${}_2$'.format(el1))
-            else:
-                ax.set_title('Series of Vibronic Progression(s) for {}-{}'.format(el1,el2))
-
+            ax.set_title('Series of Vibronic Progression(s)')
             ax.set_xlabel('Ground State (v\'\')')
             ax.set_ylabel('Δrₑ (Å)')
             ax.set_zlabel('Franck-Condon Factor (%)')
             ax.set_yticks(yticks)
 
-    elif cb1.get() == 1 and cb2.get() == 1:
-       pass 
-        
-    canvas.draw()
+    else:
+        messagebox.showerror("showerror", "Choose an Option")
 
 fig = f.Figure(figsize=(4.5, 4), dpi=100, linewidth=5,edgecolor='darkseagreen')
 ax = fig.add_subplot(projection='3d')
@@ -456,26 +425,17 @@ e8.place(x=200+ offset1, y=300+ offset2)
 
 # Checkboxes 
 
-cb1 = IntVar() 
-cb2 = IntVar() 
+options_list = ["Constant Δrₑ", "Constant v'"] 
+  
+# Variable to keep track of the option 
+# selected in OptionMenu 
+val = StringVar(root) 
+  
+# Set the default value of the variable 
+val.set("Select an Option")
 
-b3 = Checkbutton(root, text = "Constant Δrₑ", font=("Courier",12,"bold"),
-                    variable = cb1, 
-                    onvalue = 1, 
-                    offvalue = 0, 
-                    height = 2, 
-                    width = 20)
-b3.place(x=328 + 25,y=80)
-b3.configure(background='dimgray',fg='chartreuse')
-
-b4 = Checkbutton(root, text = "Constant v'", font=("Courier",12,"bold"),
-                    variable = cb2, 
-                    onvalue = 1, 
-                    offvalue = 0, 
-                    height = 2, 
-                    width = 25) 
-b4.place(x=298 + 25,y=110) 
-b4.configure(background='dimgray',fg='chartreuse')
+question_menu = OptionMenu(root, val, *options_list) 
+question_menu.pack() 
 
 # Δrₑ bounds
 
