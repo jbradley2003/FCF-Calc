@@ -90,17 +90,20 @@ def createTable():
     v_es = int(e7.get())
     
     xs = [i for i in range(v_gs+1)]
+    xs.insert(0,'ES/GS')
     lst = []
+    lst.append(xs)
     for i in range(v_es+1):
-        temp = progression(i, v_gs+1,u)
+        temp = progression(i, v_gs,u)
         temp.insert(0,i)
         lst.append(temp)
-        print(lst)
-        for j in range(v_gs+1):
+    
+    for i in range(len(lst)):
+        for j in range(len(lst[i])):
             e = Entry(main_frame, width=10, fg='blue',font=('Arial',10,'bold'))
             e.grid(row=i, column=j)
             e.insert(END, lst[i][j])
-    print(lst)
+            
 
 def plotBars():
 
@@ -114,6 +117,8 @@ def plotBars():
     main_frame.pack(fill=BOTH, expand=1)
 
     ## Data processing
+    
+    
 
     # Update Constants
     r_gs = e4.get()
