@@ -77,20 +77,20 @@ def createTable():
     # l2.config(text=el2)
 
     # mol = eA.symbol + "-" + eB.symbol
+   
+    m1 = float(e1.get())
+    m2 = float(e2.get())
 
-    r_gs = e4.get()
     r_es = e3.get()
+    r_gs = e4.get()
 
     delta_r = float(r_es) - float(r_gs)
 
-    w_gs = e6.get()
-    w_es = e5.get()
-
-    m1 = e1.get()
-    m2 = e2.get()
-
-    v_gs = int(e8.get())
+    w_es = float(e5.get())
+    w_gs = float(e6.get())
+    
     v_es = int(e7.get())
+    v_gs = int(e8.get())
 
     u = calculateU(w_gs, w_es, m1, m2, delta_r)
     
@@ -121,19 +121,19 @@ def plotBars():
     main_frame.pack(fill=BOTH, expand=1) 
 
     # Update Constants
-    r_gs = e4.get()
+    m1 = float(e1.get())
+    m2 = float(e2.get())
+
     r_es = e3.get()
+    r_gs = e4.get()
 
     delta_r = float(r_es) - float(r_gs)
 
-    w_gs = e6.get()
-    w_es = e5.get()
-
-    m1 = e1.get()
-    m2 = e2.get()
+    w_es = float(e5.get())
+    w_gs = float(e6.get())
     
-    v_gs = int(e8.get())
     v_es = int(e7.get())
+    v_gs = int(e8.get())
 
     u = calculateU(w_gs, w_es, m1, m2, delta_r)
 
@@ -232,20 +232,21 @@ def plot():
     ax.clear()
 
     # Update Constants
-    r_gs = e4.get()
+    m1 = float(e1.get())
+    m2 = float(e2.get())
+
     r_es = e3.get()
+    r_gs = e4.get()
 
     delta_r = float(r_es) - float(r_gs)
 
-    w_gs = e6.get()
-    w_es = e5.get()
-
-    m1 = e1.get()
-    m2 = e2.get()
+    w_es = float(e5.get())
+    w_gs = float(e6.get())
+    
+    v_es = int(e7.get())
+    v_gs = int(e8.get())
 
     u = calculateU(w_gs, w_es, m1, m2, delta_r)
-
-    v_gs = int(e8.get())
 
     color_arr = ['r', 'g', 'b', 'y']
 
@@ -257,10 +258,6 @@ def plot():
     range_gs = int(e13.get())
 
     dr = abs(d_r1 - d_r2)/n
-    r = d_r1
-
-    v_gs = int(e8.get())
-    v_es = int(e7.get())
 
     # Graph option toggle
     if val.get() == "Constant Δrₑ":
@@ -296,18 +293,14 @@ def plot():
         else:
             colors = generateColors(n+1, color_arr)
 
-            yticks = [r]
+            yticks = np.linspace(d_r1, d_r2, n+1)
 
-            for i in range(n):
-                r += dr
-                yticks.append(r)
-
-            yticks.reverse()
+            yticks = np.flip(yticks)
 
             for c, k in zip(colors, yticks):
                 # Create data set in plane k
                 xs = np.arange(range_gs+1)
-                u = (mu * w_bar) * (k)**2 / 67.4425
+                u = calculateU(w_gs, w_es, m1, m2,k)
                 ys = progression(const_v_es, range_gs, u)
 
                 # Coloring each set
@@ -351,11 +344,11 @@ l.configure(background='dimgray',fg='chartreuse')
 
 # Masses
 
-l1 = Label(root, text="Z (1)", font=("Courier",12,"bold"))
+l1 = Label(root, text="Mass (1)", font=("Courier",12,"bold"))
 l1.place(x=95 + offset1, y=120 + offset2)
 l1.configure(background='dimgray',fg='chartreuse')
 
-l2 = Label(root, text="Z (2)", font=("Courier",12,"bold"))
+l2 = Label(root, text="Mass (2)", font=("Courier",12,"bold"))
 l2.place(x=195+ offset1, y=120+ offset2)
 l2.configure(background='dimgray',fg='chartreuse')
 
@@ -435,7 +428,7 @@ val = StringVar(root)
 val.set("Select an Option")
 
 question_menu = OptionMenu(root, val, *options_list) 
-question_menu.pack() 
+question_menu.pack()
 
 # Δrₑ bounds
 
@@ -496,11 +489,11 @@ b2.place(x=50,y=540 + 100)
 
 canvas = FigureCanvasTkAgg(fig, master = root)
 
-canvas.get_tk_widget().place(x=400, y=150)
+canvas.get_tk_widget().place(x=434, y=100)
 
 toolbar = NavigationToolbar2Tk(canvas, root, pack_toolbar = False)
 toolbar.update()
-toolbar.place(x=400, y=550)
+toolbar.place(x=434, y=500)
 
 frame.pack()
 
