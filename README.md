@@ -17,7 +17,7 @@ A consequence of this approach is that the equilibrium bond length of the molecu
 
 ![screenshot](images/jab.png)
 
-As mentioned before, the intensity of a transition is proportional to the expectation value of the dipole moment:
+As mentioned before, the intensity of a transition is proportional to the squared expectation value of the dipole moment:
 
 $$I \propto \braket{\mu}^2$$
 
