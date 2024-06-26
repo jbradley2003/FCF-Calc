@@ -43,7 +43,7 @@ Since wavefunctions to the Schrodinger equation are orthogonal to each other if 
 
 $$\implies \braket{\psi_{es, n}|\psi_{gs, n}}\braket{\psi_{es, e} | \hat{\mu_e} | \psi_{gs, e}} + \braket{\psi_{es, e}|\psi_{gs, e}}\braket{\psi_{es, n} | \hat{\mu_n} | \psi_{gs, n}} = \braket{\psi_{es, n}|\psi_{gs, n}}\braket{\psi_{es, e} | \hat{\mu_e} | \psi_{gs, e}}.$$
 
-Let $q = \braket{\mu}^2 = |\braket{\psi_{es, e} | \hat{\mu_e} | \psi_{gs, e}}|^2$, this is the Franck-Condon Factor (FCF). It represents how much the given wavefunctions in the ground and excited state overlap.
+Let $q = |\braket{\psi_{es, e} | \hat{\mu_e} | \psi_{gs, e}}|^2$, this is the Franck-Condon Factor (FCF). It represents how much the given wavefunctions in the ground and excited state overlap.
 
 $$\therefore \hat{\mu} = \sqrt{q}\braket{\psi_{es, e} | \hat{\mu_e} | \psi_{gs, e}} $$
 
