@@ -19,7 +19,7 @@ A consequence of this approach is that the equilibrium bond length of the molecu
 
 As mentioned before, the intensity of a transition is proportional to the expectation value of the dipole moment:
 
-$$I \propto \braket{\mu}$$
+$$I \propto \braket{\mu}^2$$
 
 Let $\psi_{gs}$ be the ground state wavefunction and $\psi_{es}$ correspond to the wavefunction of the excited state. We can represent $\braket{\mu}$ in bra-ket notation:
 
@@ -43,7 +43,7 @@ Since wavefunctions to the Schrodinger equation are orthogonal to each other if 
 
 $$\implies \braket{\psi_{es, n}|\psi_{gs, n}}\braket{\psi_{es, e} | \hat{\mu_e} | \psi_{gs, e}} + \braket{\psi_{es, e}|\psi_{gs, e}}\braket{\psi_{es, n} | \hat{\mu_n} | \psi_{gs, n}} = \braket{\psi_{es, n}|\psi_{gs, n}}\braket{\psi_{es, e} | \hat{\mu_e} | \psi_{gs, e}}.$$
 
-Let $\sqrt{q} = \braket{\psi_{es, n}|\psi_{gs, n}}$, this is the Franck-Condon Factor (FCF). It represents how much the given wavefunctions in the ground and excited state overlap.
+Let $q = \braket{\mu}^2 |\braket{\psi_{es, e} | \hat{\mu_e} | \psi_{gs, e}}|^2$, this is the Franck-Condon Factor (FCF). It represents how much the given wavefunctions in the ground and excited state overlap.
 
 $$\therefore \hat{\mu} = \sqrt{q}\braket{\psi_{es, e} | \hat{\mu_e} | \psi_{gs, e}} $$
 
