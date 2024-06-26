@@ -31,6 +31,10 @@ We must consider each wavefunction as a product of two wavefunctions (with respe
 - $\psi_{es} = \psi_{es, e}$ $\psi_{es, n}$
 - $\hat{\mu} = \hat{\mu}_e + \hat{\mu}_n.$
 
+Note: What is an electric dipole?
+
+The energy of a transition can be described as $E = \mu \cdot \epsilon$, $\epsilon$ is the electric field.
+
 Thus, we can rewrite $\braket{\psi_{es} | \hat{\mu} | \psi_{gs}}$ as:
 
 $$\braket{\psi_{es} | \hat{\mu} | \psi_{gs}} = \braket{\psi_{es, e} \psi_{es, n}| \hat{\mu_e} + \hat{\mu_n} | \psi_{gs, e} \psi_{gs, n} } = \braket{\psi_{es, e} \psi_{es, n}| \hat{\mu_e} | \psi_{gs, e} \psi_{gs, n} } + \braket{\psi_{es, e} \psi_{es, n}| \hat{\mu_n} | \psi_{gs, e} \psi_{gs, n} }.$$
