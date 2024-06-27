@@ -33,7 +33,9 @@ We must consider each wavefunction as a product of two wavefunctions (with respe
 
 Note: What is an electric dipole?
 
-The energy of a transition can be described as $E = \mu \cdot \epsilon$, $\epsilon$ is the electric field.
+The energy of a transition can be described as $E = \mu \cdot \epsilon$, $\epsilon$ is the electric field with units N/c. This means that:
+
+$[E] = Nm \implies [\mu] \cdot N/c = Nm \implies [\mu] \cdot \frac{cNm}{N} = c\cdot m.$
 
 Thus, we can rewrite $\braket{\psi_{es} | \hat{\mu} | \psi_{gs}}$ as:
 
