@@ -119,6 +119,11 @@ def createTable():
                 e = Entry(main_frame, width=10, fg='black',font=('Arial',10,'bold'))
                 e.grid(row=i, column=j)
                 e.insert(END, lst[i][j])
+                # if type(lst[i][j]) is float:
+                #     e.insert(END, round(lst[i][j],4))
+                # else:
+                #     e.insert(END, lst[i][j])
+                
                 
     elif val.get() == "Constant v'":
         
@@ -425,15 +430,22 @@ def plot():
     else:
         messagebox.showerror("showerror", "Choose an Option")
 
-fig = f.Figure(figsize=(4.5, 4), dpi=100, linewidth=5,edgecolor='darkseagreen')
-ax = fig.add_subplot(projection='3d')
-
 # Initialization
 
 root = tk.Tk()
-root.geometry('1000x700')
+root.geometry('1100x700')
 root.title("FCF-Calc")
 root.configure(background='dimgray')
+
+fig = f.Figure(figsize=(4.2, 3.5), dpi=150, linewidth=2,edgecolor='darkseagreen')
+ax = fig.add_subplot(projection='3d')
+
+canvas = FigureCanvasTkAgg(fig, master = root)
+canvas.get_tk_widget().place(x=350, y=100)
+
+toolbar = NavigationToolbar2Tk(canvas, root, pack_toolbar = False)
+toolbar.update()
+toolbar.place(x=350, y=625)
 
 # App
 frame = tk.Frame(root)
@@ -453,7 +465,7 @@ l.configure(background='dimgray',fg='chartreuse')
 
 l4 = Label(root, text="Constant Δrₑ", font=("Courier",13,"bold","italic"))
 l4.place(x=125 + offset1, y=90 + offset2)
-l4.configure(background='royalblue',fg='chartreuse')
+l4.configure(background='darkslategray',fg='chartreuse')
 
 # Masses
 
@@ -547,7 +559,7 @@ question_menu.pack()
 
 l5 = Label(root, text="Constant v'", font=("Courier",13,"bold","italic"))
 l5.place(x=130 + offset1, y=335 + offset2)
-l5.configure(background='royalblue',fg='chartreuse')
+l5.configure(background='darkslategray',fg='chartreuse')
 
 # Δrₑ bounds
 
@@ -599,22 +611,17 @@ e13.place(x=200+ offset1, y=455+ sep*offset2)
 
 # Buttons
 
-b1 = Button(root, text= "Plot Vibronic Progression", command = plot, fg = 'chartreuse', bg = 'darkslategray',font = ("Courier",12,"bold"))
+b1 = Button(root, text= "Plot Vibronic Progression", command = plot, font = ("Courier",12,"bold"))
 b1.place(x=50,y=500 + 100)
+b1.configure(background='darkslategray',fg='chartreuse')
 
-b2 = Button(root, text= "Plot Individual Progressions", command = plotBars, fg = 'chartreuse', bg = 'darkslategray',font = ("Courier",12,"bold"))
+b2 = Button(root, text= "Plot Individual Progressions", command = plotBars, font = ("Courier",12,"bold"))
+b2.configure(background='darkslategray',fg='chartreuse')
 b2.place(x=50,y=460 + 100)
 
-b2 = Button(root, text= "View Tables", command = createTable, fg = 'chartreuse', bg = 'darkslategray',font = ("Courier",12,"bold"))
-b2.place(x=50,y=540 + 100)
-
-canvas = FigureCanvasTkAgg(fig, master = root)
-
-canvas.get_tk_widget().place(x=434, y=100)
-
-toolbar = NavigationToolbar2Tk(canvas, root, pack_toolbar = False)
-toolbar.update()
-toolbar.place(x=434, y=500)
+b3 = Button(root, text= "View Tables", command = createTable, font = ("Courier",12,"bold"))
+b3.configure(background='darkslategray',fg='chartreuse')
+b3.place(x=50,y=540 + 100)
 
 frame.pack()
 
