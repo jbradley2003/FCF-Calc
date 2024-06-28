@@ -17,9 +17,9 @@ A consequence of this approach is that the equilibrium bond length of the molecu
 
 ![screenshot](images/jab.png)
 
-As mentioned before, the intensity of a transition is proportional to the expectation value of the dipole moment:
+As mentioned before, the intensity of a transition is proportional to the squared expectation value of the dipole moment:
 
-$$I \propto \braket{\mu}$$
+$$I \propto \braket{\mu}^2$$
 
 Let $\psi_{gs}$ be the ground state wavefunction and $\psi_{es}$ correspond to the wavefunction of the excited state. We can represent $\braket{\mu}$ in bra-ket notation:
 
@@ -30,6 +30,14 @@ We must consider each wavefunction as a product of two wavefunctions (with respe
 - $\psi_{gs} = \psi_{gs, e}$ $\psi_{gs, n}$
 - $\psi_{es} = \psi_{es, e}$ $\psi_{es, n}$
 - $\hat{\mu} = \hat{\mu}_e + \hat{\mu}_n.$
+
+Note: What is an electric dipole?
+
+- The energy of a transition can be described as $E = \mu \cdot \epsilon$, $\epsilon$ is the electric field with units N/c. This means that:
+
+$$[E] = Nm \implies [\mu] \cdot N/c = Nm \implies [\mu] \cdot \frac{cNm}{N} = c\cdot m.$$
+
+- The electric dipole is the product of the charge of a particle and its position.
 
 Thus, we can rewrite $\braket{\psi_{es} | \hat{\mu} | \psi_{gs}}$ as:
 
@@ -43,13 +51,15 @@ Since wavefunctions to the Schrodinger equation are orthogonal to each other if 
 
 $$\implies \braket{\psi_{es, n}|\psi_{gs, n}}\braket{\psi_{es, e} | \hat{\mu_e} | \psi_{gs, e}} + \braket{\psi_{es, e}|\psi_{gs, e}}\braket{\psi_{es, n} | \hat{\mu_n} | \psi_{gs, n}} = \braket{\psi_{es, n}|\psi_{gs, n}}\braket{\psi_{es, e} | \hat{\mu_e} | \psi_{gs, e}}.$$
 
-Let $q = \braket{\psi_{es, n}|\psi_{gs, n}}$, this is the Franck-Condon Factor (FCF). It represents how much the given wavefunctions in the ground and excited state overlap.
+Let $S_{v',v''}^2 = |\braket{\psi_{es, n}|\psi_{gs, n}}|^2$, this is the Franck-Condon Factor (FCF). It represents how much the given wavefunctions in the ground and excited state overlap.
 
-$$\therefore \hat{\mu} = q\braket{\psi_{es, e} | \hat{\mu_e} | \psi_{gs, e}} $$
+$$\braket{\mu} = S_{v',v''}\braket{\psi_{es, e} | \hat{\mu_e} | \psi_{gs, e}} \implies  \braket{\mu}^2 = S_{v',v''}^2\braket{\psi_{es, e} | \hat{\mu_e} | \psi_{gs, e}}^2 $$
+
+$$\implies I \propto S_{v',v''}^2$$
 
 With Nicholls' work (which is probably not very accurate but it is simple to use), we have an approximation for the FCF as a function of the vibrational quantum numbers in the excited ($v'$) and ground ($v''$) states:
 
-$$q(v',v'') = \frac{u^{v''-v'} e^{-u}}{v'! v''!}[L^{v''-v'}_{v'}(u)]^2,$$
+$$q(v',v'') = S_{v',v''}^2 = |\braket{\psi_{es, n}|\psi_{gs, n}}|^2 = \frac{u^{v''-v'} e^{-u}}{v'! v''!}[L^{v''-v'}_{v'}(u)]^2,$$
 
 
 where...
@@ -87,19 +97,22 @@ Open the app by running the code in `fcf.py`. Note that I have been developing t
 **1. Plot a 2D bar chart with different vibronic progressions:**
   - Each bar chart in the series corresponds to the Franck-Condon factor between a fixed excited vibrational state ($v'$) and a specified number of ground states ($v''$).
   - Constants that help describe the vibrational potential energy well of the ground and excited states can be specified:
-    - The atomic number (Z) of each atom in the molecule. These are used to fetch the masses of the element (in amu) using the `periodictable` module.
+    - The mass of each atom in the molecule.
     - The vibrational wavenumber of the molecule in the excited ($w_e'$) and ground ($w_e''$) states.
     - The internuclear distance/bond length of the molecule in the excited ($r_e'$) and ground ($r_e''$) states.
     - Lastly, you can choose the number of vibrational states you wish to plot in the excited ($v'$) and ground ($v''$) states. Each bar plot shows the FCF between a constant excited state and various ground states depending on the values entered.
-
-
+      
 ![screenshot](images/2d.png)
 
-**2. See each individual FCF plot corresponding to a given excited state in another window (dynamic window sizing has not yet been implemented for large values of $v'$ and $v''$).**
+**2. Plot a 2D bar chart with various values of $\Delta r_e$ given a fixed excited state ($v'$) and number of ground state levels $[0,v'']$.**
+
+![screenshot](images/delta.png)
+
+**3. See each individual FCF plot corresponding to a given excited state in another window (dynamic window sizing has not yet been implemented for large values of $v'$ and $v''$).**
 
 ![screenshot](images/indplots.png)
 
-**3. Images of the plots can be manipulated and saved as a .png file (pictures are named `image.png` by default) thanks to the matplotlib navbar.**
+**4. Images of the plots can be manipulated and saved as a .png file (pictures are named `image.png` by default) thanks to the matplotlib navbar.**
 
 ![screenshot](images/navbar.png)
 
@@ -109,4 +122,4 @@ Open the app by running the code in `fcf.py`. Note that I have been developing t
 - Allowing users to view data tables associated with the plots.
 - More soon!
 
-Last updated: 6/18/2024.
+Last updated: 6/20/2024.
