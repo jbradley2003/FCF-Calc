@@ -616,11 +616,11 @@ b1.place(x=50,y=500 + 100)
 b1.configure(background='darkslategray',fg='chartreuse')
 
 b2 = Button(root, text= "Plot Individual Progressions", command = plotBars, font = ("Courier",12,"bold"))
-b2.configure(background='darkslategray',fg='chartreuse')
+b2.configure(background='gray',fg='chartreuse')
 b2.place(x=50,y=460 + 100)
 
 b3 = Button(root, text= "View Tables", command = createTable, font = ("Courier",12,"bold"))
-b3.configure(background='darkslategray',fg='chartreuse')
+b3.configure(background='gray',fg='chartreuse')
 b3.place(x=50,y=540 + 100)
 
 frame.pack()
