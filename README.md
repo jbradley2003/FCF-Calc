@@ -59,7 +59,7 @@ $$\implies I \propto S_{v',v''}^2$$
 
 With Nicholls' work (which is probably not very accurate but it is simple to use), we have an approximation for the FCF as a function of the vibrational quantum numbers in the excited ($v'$) and ground ($v''$) states:
 
-$$q(v',v'') = S_{v',v''} = |\braket{\psi_{es, n}|\psi_{gs, n}}|^2 = \frac{u^{v''-v'} e^{-u}}{v'! v''!}[L^{v''-v'}_{v'}(u)]^2,$$
+$$q(v',v'') = S_{v',v''}^2 = |\braket{\psi_{es, n}|\psi_{gs, n}}|^2 = \frac{u^{v''-v'} e^{-u}}{v'! v''!}[L^{v''-v'}_{v'}(u)]^2,$$
 
 
 where...
