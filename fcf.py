@@ -416,7 +416,7 @@ def plot():
                 ys = progression(const_v_es, range_gs, u)
 
                 # Coloring each set
-                cs = [c]*len(xs)
+                cs = [c] * len(xs)
 
                 # Plot the bar graph given by xs and ys on the plane y=k with 80% opacity.
                 ax.bar(xs, ys, zs=k, zdir='y', color=cs, alpha=0.8)

@@ -33,11 +33,11 @@ We must consider each wavefunction as a product of two wavefunctions (with respe
 
 Note: What is an electric dipole?
 
-The energy of a transition can be described as $E = \mu \cdot \epsilon$, $\epsilon$ is the electric field with units N/c. This means that:
+- The energy of a transition can be described as $E = \mu \cdot \epsilon$, $\epsilon$ is the electric field with units N/c. This means that:
 
 $$[E] = Nm \implies [\mu] \cdot N/c = Nm \implies [\mu] \cdot \frac{cNm}{N} = c\cdot m.$$
 
-The electric dipole is the product of the charge of a particle and its position.
+- The electric dipole is the product of the charge of a particle and its position.
 
 Thus, we can rewrite $\braket{\psi_{es} | \hat{\mu} | \psi_{gs}}$ as:
 
@@ -51,13 +51,15 @@ Since wavefunctions to the Schrodinger equation are orthogonal to each other if 
 
 $$\implies \braket{\psi_{es, n}|\psi_{gs, n}}\braket{\psi_{es, e} | \hat{\mu_e} | \psi_{gs, e}} + \braket{\psi_{es, e}|\psi_{gs, e}}\braket{\psi_{es, n} | \hat{\mu_n} | \psi_{gs, n}} = \braket{\psi_{es, n}|\psi_{gs, n}}\braket{\psi_{es, e} | \hat{\mu_e} | \psi_{gs, e}}.$$
 
-Let $q = |\braket{\psi_{es, n}|\psi_{gs, n}}|^2$, this is the Franck-Condon Factor (FCF). It represents how much the given wavefunctions in the ground and excited state overlap.
+Let $S_{v',v''}^2 = |\braket{\psi_{es, n}|\psi_{gs, n}}|^2$, this is the Franck-Condon Factor (FCF). It represents how much the given wavefunctions in the ground and excited state overlap.
 
-$$\therefore \hat{\mu} = \sqrt{q}\braket{\psi_{es, e} | \hat{\mu_e} | \psi_{gs, e}} $$
+$$\braket{\mu} = S_{v',v''}\braket{\psi_{es, e} | \hat{\mu_e} | \psi_{gs, e}} \implies  \braket{\mu}^2 = S_{v',v''}^2\braket{\psi_{es, e} | \hat{\mu_e} | \psi_{gs, e}}^2 $$
+
+$$\implies I \propto S_{v',v''}^2$$
 
 With Nicholls' work (which is probably not very accurate but it is simple to use), we have an approximation for the FCF as a function of the vibrational quantum numbers in the excited ($v'$) and ground ($v''$) states:
 
-$$q(v',v'') = |\braket{\psi_{es, n}|\psi_{gs, n}}|^2 = \frac{u^{v''-v'} e^{-u}}{v'! v''!}[L^{v''-v'}_{v'}(u)]^2,$$
+$$q(v',v'') = S_{v',v''}^2 = |\braket{\psi_{es, n}|\psi_{gs, n}}|^2 = \frac{u^{v''-v'} e^{-u}}{v'! v''!}[L^{v''-v'}_{v'}(u)]^2,$$
 
 
 where...
