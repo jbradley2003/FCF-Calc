@@ -54,6 +54,7 @@ $$\implies \braket{\psi_{es, n}|\psi_{gs, n}}\braket{\psi_{es, e} | \hat{\mu_e} 
 Let $S_{v',v''}^2 = |\braket{\psi_{es, n}|\psi_{gs, n}}|^2$, this is the Franck-Condon Factor (FCF). It represents how much the given wavefunctions in the ground and excited state overlap.
 
 $$\braket{\mu} = S_{v',v''}\braket{\psi_{es, e} | \hat{\mu_e} | \psi_{gs, e}} \implies  \braket{\mu}^2 = S_{v',v''}^2\braket{\psi_{es, e} | \hat{\mu_e} | \psi_{gs, e}}^2 $$
+
 $$\therefore I \propto S_{v',v''}^2$$
 
 With Nicholls' work (which is probably not very accurate but it is simple to use), we have an approximation for the FCF as a function of the vibrational quantum numbers in the excited ($v'$) and ground ($v''$) states:
