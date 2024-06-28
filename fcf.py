@@ -159,12 +159,6 @@ def createTable():
  
 def plotBars():
     # Creating new window/frame
-    secondary_window = tk.Toplevel(bg='white')
-    secondary_window.title("Individual Progressions")
-    secondary_window.geometry("600x500")
-    
-    main_frame = Frame(secondary_window)
-    main_frame.pack(fill=BOTH, expand=1) 
 
     # Update Constants
     m1 = float(e1.get())
@@ -193,6 +187,13 @@ def plotBars():
     range_gs = int(e13.get())
     
     if val.get() == "Constant Δrₑ":
+        
+        secondary_window = tk.Toplevel(bg='white')
+        secondary_window.title("Individual Progressions")
+        secondary_window.geometry("600x500")
+        main_frame = Frame(secondary_window)
+        main_frame.pack(fill=BOTH, expand=1) 
+        
         if v_es == 0:
             fig,ax = plt.subplots()
             fig.suptitle('Vibronic Progression')
@@ -249,8 +250,8 @@ def plotBars():
                     ys = progression(i,v_gs,u)
                     ax[i].bar(xs, ys, width=0.5)
                     ax[i].set_title('Excited State: v\'= ' + str(i))
-                    ax[i].set_xlabel('Ground State (v\'\')')
                     ax[i].xaxis.set_major_locator(MaxNLocator(integer=True))
+                    ax[i].set_xlabel('Ground State (v\'\')')
                     ax[i].set_ylabel('Franck-Condon Factor (%)')
                     ax[i].set_facecolor('lightgrey')
 
@@ -269,8 +270,8 @@ def plotBars():
                         n += 1 
                     ys = progression(i,v_gs,u)
                     ax[m,n].bar(xs, ys, width=0.5)
-                    ax[m,n].xaxis.set_major_locator(MaxNLocator(integer=True))
                     ax[m,n].set_title('Excited State: v\'= ' + str(i))
+                    ax[m,n].xaxis.set_major_locator(MaxNLocator(integer=True))
                     ax[m,n].set_xlabel('Ground State (v\'\')')
                     ax[m,n].set_ylabel('Franck-Condon Factor (%)')
                     ax[m,n].set_facecolor('lightgrey')
@@ -279,6 +280,13 @@ def plotBars():
         frame.pack()
         canvas.draw()                 
     elif val.get() == "Constant v'":
+        
+        secondary_window = tk.Toplevel(bg='white')
+        secondary_window.title("Individual Progressions")
+        secondary_window.geometry("600x500")
+        main_frame = Frame(secondary_window)
+        main_frame.pack(fill=BOTH, expand=1) 
+        
         fig = f.Figure(figsize=(17, 12), dpi=80)
         canvas = FigureCanvasTkAgg(fig, master = secondary_window)
         canvas.get_tk_widget().place(x=0, y=50)
@@ -308,8 +316,8 @@ def plotBars():
                 ys = progression(const_v_es,range_gs,u)
                 ax[i].bar(xs, ys, width=0.5)
                 ax[i].set_title('Δrₑ = ' + str(round(yticks[i], 4)))
-                ax[i].set_xlabel('Ground State (v\'\')')
                 ax[i].xaxis.set_major_locator(MaxNLocator(integer=True))
+                ax[i].set_xlabel('Ground State (v\'\')')
                 ax[i].set_ylabel('Franck-Condon Factor (%)')
                 ax[i].set_facecolor('lightgrey')
 
@@ -328,8 +336,8 @@ def plotBars():
                 u = calculateU(w_gs, w_es, m1, m2, yticks[i])
                 ys = progression(const_v_es,range_gs,u)
                 ax[m,n].bar(xs, ys, width=0.5)
-                ax[m,n].xaxis.set_major_locator(MaxNLocator(integer=True))
                 ax[m,n].set_title('Δrₑ = ' + str(round(yticks[i], 4)))
+                ax[m,n].xaxis.set_major_locator(MaxNLocator(integer=True))
                 ax[m,n].set_xlabel('Ground State (v\'\')')
                 ax[m,n].set_ylabel('Franck-Condon Factor (%)')
                 ax[m,n].set_facecolor('lightgrey')
