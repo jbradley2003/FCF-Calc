@@ -96,7 +96,7 @@ def createTable():
     if val.get() == "Constant Δrₑ":
         
         secondary_window = tk.Toplevel(bg='white')
-        secondary_window.title("Individual Progressions")
+        secondary_window.title("Data")
         secondary_window.geometry("700x500")
 
         main_frame = Frame(secondary_window)
@@ -104,6 +104,7 @@ def createTable():
         
         u = calculateU(w_gs, w_es, m1, m2, delta_r)
         xs = list(range(v_gs+1))
+
         xs.insert(0,'ES/GS')
 
         lst = []
@@ -128,14 +129,14 @@ def createTable():
     elif val.get() == "Constant v'":
         
         secondary_window = tk.Toplevel(bg='white')
-        secondary_window.title("Individual Progressions")
+        secondary_window.title("Data")
         secondary_window.geometry("700x500")
 
         main_frame = Frame(secondary_window)
         main_frame.pack(fill=BOTH, expand=1)
         
         u = calculateU(w_gs, w_es, m1, m2, delta_r)
-        xs = list(range(v_gs+1))
+        xs = list(range(range_gs+1))
         xs.insert(0,'Δrₑ/GS')
 
         lst = []
@@ -463,71 +464,71 @@ label.pack()
 
 # Entries
 offset1 = 0
-offset2 = 30
+offset2 = 40
 
 # Top Labels
 
 l = Label(root, text="Parameters", font=("Courier",25,"bold","italic"))
-l.place(x=100 + offset1, y=50 + offset2)
+l.place(x=85 + offset1, y=30 + offset2)
 l.configure(background='dimgray',fg='chartreuse')
 
 l4 = Label(root, text="Constant Δrₑ", font=("Courier",13,"bold","italic"))
-l4.place(x=125 + offset1, y=90 + offset2)
+l4.place(x=125 + offset1, y=190 + offset2)
 l4.configure(background='darkslategray',fg='chartreuse')
 
 # Masses
 
 l1 = Label(root, text="Mass (1)", font=("Courier",12,"bold"))
-l1.place(x=95 + offset1, y=120 + offset2)
+l1.place(x=95 + offset1, y=80 + offset2)
 l1.configure(background='dimgray',fg='chartreuse')
 
 l2 = Label(root, text="Mass (2)", font=("Courier",12,"bold"))
-l2.place(x=195+ offset1, y=120+ offset2)
+l2.place(x=195+ offset1, y=80+ offset2)
 l2.configure(background='dimgray',fg='chartreuse')
 
 e1 = Entry(root, width=10, font=("Courier",9,"bold"))
 e1.insert(1,23)
-e1.place(x=100+ offset1, y=150+ offset2)
+e1.place(x=100+ offset1, y=100+ offset2)
 
 e2 = Entry(root, width=10, font=("Courier",9,"bold"))
 e2.insert(1,9)
-e2.place(x=200+ offset1, y=150+ offset2)
+e2.place(x=200+ offset1, y=100+ offset2)
 
 # Internuclear Distances
 
 l3 = Label(root, text="rₑ'", font=("Courier",12,"bold"))
-l3.place(x=95+ offset1, y=180+ offset2)
+l3.place(x=95+ offset1, y=220+ offset2)
 l3.configure(background='dimgray',fg='chartreuse')
 
 l4 = Label(root, text="rₑ''", font=("Courier",12,"bold"))
-l4.place(x=195+ offset1, y=180+ offset2)
+l4.place(x=195+ offset1, y=220+ offset2)
 l4.configure(background='dimgray',fg='chartreuse')
 
 e3 = Entry(root, width=10, font=("Courier",9,"bold"))
 e3.insert(1,1.703)
-e3.place(x=100+ offset1, y=200+ offset2)
+e3.place(x=100+ offset1, y=240+ offset2)
 
 e4 = Entry(root, width=10, font=("Courier",9,"bold"))
 e4.insert(1,1.775)
-e4.place(x=200+ offset1, y=200+ offset2)
+e4.place(x=200+ offset1, y=240+ offset2)
 
 # Vibrational Frequencies
 
 l5 = Label(root, text="wₑ'", font=("Courier",12,"bold"))
-l5.place(x=95+ offset1, y=230+ offset2)
+l5.place(x=95+ offset1, y=130+ offset2)
 l5.configure(background='dimgray',fg='chartreuse')
 
 l6 = Label(root, text="wₑ''", font=("Courier",12,"bold"))
-l6.place(x=195+ offset1, y=230+ offset2)
+l6.place(x=195+ offset1, y=130+ offset2)
 l6.configure(background='dimgray',fg='chartreuse')
 
 e5 = Entry(root, width=10, font=("Courier",9,"bold"))
 e5.insert(1,1620)
-e5.place(x=100+ offset1, y=250+ offset2)
+e5.place(x=100+ offset1, y=150+ offset2)
 
 e6 = Entry(root, width=10, font=("Courier",9,"bold"))
 e6.insert(1,1386)
-e6.place(x=200+ offset1, y=250+ offset2)
+e6.place(x=200+ offset1, y=150+ offset2)
 
 # Vibrational QNs
 
@@ -620,16 +621,16 @@ e13.place(x=200+ offset1, y=455+ sep*offset2)
 # Buttons
 
 b1 = Button(root, text= "Plot Vibronic Progression", command = plot, font = ("Courier",12,"bold"))
-b1.place(x=50,y=500 + 100)
+b1.place(x=50,y=500 + 110)
 b1.configure(background='darkslategray',fg='chartreuse')
 
 b2 = Button(root, text= "Plot Individual Progressions", command = plotBars, font = ("Courier",12,"bold"))
 b2.configure(background='darkslategray',fg='chartreuse')
-b2.place(x=50,y=460 + 100)
+b2.place(x=50,y=460 + 110)
 
 b3 = Button(root, text= "View Tables", command = createTable, font = ("Courier",12,"bold"))
 b3.configure(background='darkslategray',fg='chartreuse')
-b3.place(x=50,y=540 + 100)
+b3.place(x=50,y=540 + 110)
 
 frame.pack()
 
