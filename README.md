@@ -39,7 +39,7 @@ $$[E] = Nm \implies [\mu] \cdot \frac{N}{c} = Nm \implies [\mu] = \frac{cNm}{N} 
 
 - The electric dipole is the product of the charge of a particle and its position.
 
-Returning to the derivation, we can rewrite $\braket{\psi_{es} | \hat{\mu} | \psi_{gs}}$ as:
+Let's get back to the derivation, we can rewrite $\braket{\psi_{es} | \hat{\mu} | \psi_{gs}}$ as:
 
 $$\braket{\psi_{es} | \hat{\mu} | \psi_{gs}} = \braket{\psi_{es, e} \psi_{es, n}| \hat{\mu_e} + \hat{\mu_n} | \psi_{gs, e} \psi_{gs, n} } = \braket{\psi_{es, e} \psi_{es, n}| \hat{\mu_e} | \psi_{gs, e} \psi_{gs, n} } + \braket{\psi_{es, e} \psi_{es, n}| \hat{\mu_n} | \psi_{gs, e} \psi_{gs, n} }.$$
 
