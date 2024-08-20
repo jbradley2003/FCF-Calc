@@ -35,11 +35,11 @@ Note: What is an electric dipole?
 
 - The energy of a transition can be described as $E = \mu \cdot \epsilon$, $\epsilon$ is the electric field with units N/c. This means that:
 
-$$[E] = Nm \implies [\mu] \cdot N/c = Nm \implies [\mu] \cdot \frac{cNm}{N} = c\cdot m.$$
+$$[E] = Nm \implies [\mu] \cdot \frac{N}{c} = Nm \implies [\mu] = \frac{cNm}{N} = c\cdot m.$$
 
 - The electric dipole is the product of the charge of a particle and its position.
 
-Thus, we can rewrite $\braket{\psi_{es} | \hat{\mu} | \psi_{gs}}$ as:
+Let's get back to the derivation, we can rewrite $\braket{\psi_{es} | \hat{\mu} | \psi_{gs}}$ as:
 
 $$\braket{\psi_{es} | \hat{\mu} | \psi_{gs}} = \braket{\psi_{es, e} \psi_{es, n}| \hat{\mu_e} + \hat{\mu_n} | \psi_{gs, e} \psi_{gs, n} } = \braket{\psi_{es, e} \psi_{es, n}| \hat{\mu_e} | \psi_{gs, e} \psi_{gs, n} } + \braket{\psi_{es, e} \psi_{es, n}| \hat{\mu_n} | \psi_{gs, e} \psi_{gs, n} }.$$
 
@@ -99,7 +99,7 @@ Open the app by running the code in `fcf.py`. Note that I have been developing t
   - Constants that help describe the vibrational potential energy well of the ground and excited states can be specified:
     - The mass of each atom in the molecule.
     - The vibrational wavenumber of the molecule in the excited ($w_e'$) and ground ($w_e''$) states.
-    - The internuclear distance/bond length of the molecule in the excited ($r_e'$) and ground ($r_e''$) states.
+    - The molecule's internuclear distance/bond length in the excited ($r_e'$) and ground ($r_e''$) states.
     - Lastly, you can choose the number of vibrational states you wish to plot in the excited ($v'$) and ground ($v''$) states. Each bar plot shows the FCF between a constant excited state and various ground states depending on the values entered.
       
 ![screenshot](images/2d.png)
@@ -108,7 +108,7 @@ Open the app by running the code in `fcf.py`. Note that I have been developing t
 
 ![screenshot](images/delta.png)
 
-**3. See each individual FCF plot corresponding to a given excited state in another window (dynamic window sizing has not yet been implemented for large values of $v'$ and $v''$).**
+**3. See each individual FCF plot corresponding to a given excited state in another window.**
 
 ![screenshot](images/indplots.png)
 
@@ -116,10 +116,7 @@ Open the app by running the code in `fcf.py`. Note that I have been developing t
 
 ![screenshot](images/navbar.png)
 
-**What's next on the agenda?**
-- Fixing GUI quirks.
-- Allowing users to make a 2D chart with an excited state held constant (for all bar plots in the chart) while $\Delta r_e$ varies.
-- Allowing users to view data tables associated with the plots.
-- More soon!
+**5. View tables for the different plots.**
+![screenshot](images/tables.png)
 
 Last updated: 6/20/2024.
