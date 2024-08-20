@@ -117,6 +117,6 @@ Open the app by running the code in `fcf.py`. Note that I have been developing t
 ![screenshot](images/navbar.png)
 
 **5. View tables for the different plots.**
-![screenshot](images/table.png)
+![screenshot](images/tables.png)
 
 Last updated: 6/20/2024.
