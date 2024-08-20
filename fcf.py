@@ -407,9 +407,10 @@ def plot():
     elif val.get() == "Constant v'":
 
         if n <= 0:
-            top= Toplevel(root)
-            top.geometry("200x50")
-            top.title("Increment count must be greater than 0.")
+            messagebox.showerror("showerror", "Increment count must be greater than 0.")
+
+        if d_r1 == 0:
+            messagebox.showerror("showerror", "Δrₑ (1) must be greater than 0.")
 
         else:
             colors = generateColors(n+1, color_arr)
