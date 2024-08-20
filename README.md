@@ -99,7 +99,7 @@ Open the app by running the code in `fcf.py`. Note that I have been developing t
   - Constants that help describe the vibrational potential energy well of the ground and excited states can be specified:
     - The mass of each atom in the molecule.
     - The vibrational wavenumber of the molecule in the excited ($w_e'$) and ground ($w_e''$) states.
-    - The internuclear distance/bond length of the molecule in the excited ($r_e'$) and ground ($r_e''$) states.
+    - The molecule's internuclear distance/bond length in the excited ($r_e'$) and ground ($r_e''$) states.
     - Lastly, you can choose the number of vibrational states you wish to plot in the excited ($v'$) and ground ($v''$) states. Each bar plot shows the FCF between a constant excited state and various ground states depending on the values entered.
       
 ![screenshot](images/2d.png)
@@ -108,7 +108,7 @@ Open the app by running the code in `fcf.py`. Note that I have been developing t
 
 ![screenshot](images/delta.png)
 
-**3. See each individual FCF plot corresponding to a given excited state in another window (dynamic window sizing has not yet been implemented for large values of $v'$ and $v''$).**
+**3. See each individual FCF plot corresponding to a given excited state in another window.**
 
 ![screenshot](images/indplots.png)
 
@@ -116,10 +116,7 @@ Open the app by running the code in `fcf.py`. Note that I have been developing t
 
 ![screenshot](images/navbar.png)
 
-**What's next on the agenda?**
-- Fixing GUI quirks.
-- Allowing users to make a 2D chart with an excited state held constant (for all bar plots in the chart) while $\Delta r_e$ varies.
-- Allowing users to view data tables associated with the plots.
-- More soon!
+**5. View tables for the different plots.**
+![screenshot](images/table.png)
 
 Last updated: 6/20/2024.
